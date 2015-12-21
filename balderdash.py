@@ -19,7 +19,7 @@ def get_word_definition(word, word_api):
     import re
     dictionary_entry = word_api.getDefinitions(
         word,
-        sourceDictionaries='all',
+        sourceDictionaries="all",
         limit=1)
 
     if not dictionary_entry:
@@ -35,7 +35,7 @@ def get_word_definition(word, word_api):
         related_form = related_search_result.group(1)
         related_dictionary_entry = word_api.getDefinitions(
             related_form,
-            sourceDictionaries='all',
+            sourceDictionaries="all",
             limit=1)
         if not related_dictionary_entry:
             return first_definition
@@ -50,8 +50,12 @@ def get_word_definition(word, word_api):
 
 
 def run():
-    apiUrl = 'http://api.wordnik.com/v4'
-    apiKey = os.getenv('WORDNIK_API_KEY')
+    apiUrl = "http://api.wordnik.com/v4"
+    # Don't normally check your credentials into version control!
+    # This API key is not particularly sensitive, so do as I say not
+    # as I do.
+    apiKey = os.getenv("WORDNIK_API_KEY",
+                       "a640d86be77d652da540e00c27b087c2cdbeee53ffd3b3457")
     client = swagger.ApiClient(apiKey, apiUrl)
     words_api = WordsApi.WordsApi(client)
     word_api = WordApi.WordApi(client)
@@ -62,7 +66,7 @@ def run():
     print u"Definition: {}".format(random_word_definition)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import os
     import sys
     from wordnik import swagger, WordApi, WordsApi
@@ -72,9 +76,9 @@ if __name__ == '__main__':
     while True:
         prompt_message = "\nPress n to get another word or q to quit: "
         command = raw_input(prompt_message)
-        if command == 'q':
+        if command == "q":
             sys.exit(0)
-        elif command == 'n':
+        elif command == "n":
             run()
         else:
             command = raw_input(prompt_message)
