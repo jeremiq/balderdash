@@ -51,16 +51,6 @@ def get_word_definition(word, word_api):
 
 
 def run():
-    apiUrl = "http://api.wordnik.com/v4"
-    # Don't normally check your credentials into version control!
-    # This API key is not particularly sensitive, so do as I say not
-    # as I do.
-    apiKey = os.getenv("WORDNIK_API_KEY",
-                       "a640d86be77d652da540e00c27b087c2cdbeee53ffd3b3457")
-    client = swagger.ApiClient(apiKey, apiUrl)
-    words_api = WordsApi.WordsApi(client)
-    word_api = WordApi.WordApi(client)
-
     random_word = get_random_word(words_api, 8)
     random_word_definition = get_word_definition(random_word, word_api)
     print u"\nYour random word is: {}".format(random_word)
@@ -73,8 +63,18 @@ if __name__ == "__main__":
     import sys
     from wordnik import swagger, WordApi, WordsApi
     print "Welcome to Baldersash!"
-    run()
 
+    apiUrl = "http://api.wordnik.com/v4"
+    # Don't normally check your credentials into version control!
+    # This API key is not particularly sensitive, so do as I say not
+    # as I do.
+    apiKey = os.getenv("WORDNIK_API_KEY",
+                       "a640d86be77d652da540e00c27b087c2cdbeee53ffd3b3457")
+    client = swagger.ApiClient(apiKey, apiUrl)
+    words_api = WordsApi.WordsApi(client)
+    word_api = WordApi.WordApi(client)
+
+    run()
     while True:
         prompt_message = "\nPress n to get another word or q to quit: "
         command = raw_input(prompt_message)
