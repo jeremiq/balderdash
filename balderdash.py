@@ -68,7 +68,7 @@ if __name__ == "__main__":
     import re
     import sys
     from wordnik import swagger, WordApi, WordsApi
-    print "Welcome to Baldersash!"
+    print "Welcome to Balderdash!"
 
     apiUrl = "http://api.wordnik.com/v4"
     # Don't normally check your credentials into version control!
