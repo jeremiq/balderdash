@@ -41,24 +41,26 @@ def get_word_definition(word, word_api):
             sourceDictionaries="all",
             limit=1)
         if not related_dictionary_entry:
-            return first_definition
+            return u"\nDefinition of '{0}': {1} \n".format(word,
+                                                         first_definition)
         related_definition = related_dictionary_entry[0].text
         print (u"Your word was {}. Fetching definition "
                "of related word {}:".format(word,
                                             related_form))
-        return (u"\nDefinition of {0}: {1} \n"
-                "Definition of related word, {2}: {3}".format(word,
-                    first_definition,
-                    related_form,
-                    related_definition))
-    return first_definition
+        return (u"\nDefinition of '{0}': {1} \n"
+                "Definition of related word, '{2}': {3}".format(word,
+                                                              first_definition,
+                                                              related_form,
+                                                              related_definition))
+    return u"\nDefinition of '{0}': {1} \n".format(word,
+                                                  first_definition)
 
 
 def run():
     random_word = get_random_word(words_api, 8)
     random_word_definition = get_word_definition(random_word, word_api)
     print u"\nYour random word is: {}".format(random_word)
-    print u"Definition: {}".format(random_word_definition)
+    print random_word_definition
 
 
 if __name__ == "__main__":
