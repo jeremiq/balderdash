@@ -16,7 +16,6 @@ def get_random_word(words_api, min_length):
 
 
 def get_word_definition(word, word_api):
-    import re
     dictionary_entry = word_api.getDefinitions(
         word,
         sourceDictionaries="all",
@@ -70,6 +69,7 @@ def run():
 
 if __name__ == "__main__":
     import os
+    import re
     import sys
     from wordnik import swagger, WordApi, WordsApi
     print "Welcome to Baldersash!"
