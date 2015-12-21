@@ -9,6 +9,7 @@ target="_blank">wordnik</a> API to find words and definitions.
 # Install
 
 ```
+git clone https://github.com/jeremiq/balderdash.git
 cd balderdash
 pip install wordnik==2.1.3
 ```
