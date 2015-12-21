@@ -28,6 +28,10 @@ def get_word_definition(word, word_api):
     related_searcher = re.compile("(Plural form of |"
                                   "Of or relating to |"
                                   "Of or pertaining to the |"
+                                  "Obsolete form of |"
+                                  "Common misspelling of |"
+                                  "A person who studies |"
+                                  ".* participle of |"
                                   "Resembling a )(\w+([a-zA-Z-]+)?).")
     related_search_result = related_searcher.match(first_definition)
     if related_search_result:
