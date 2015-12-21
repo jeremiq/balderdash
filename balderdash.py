@@ -26,13 +26,13 @@ def get_word_definition(word, word_api):
         raise WordNotFoundException(word)
     first_definition = dictionary_entry[0].text
 
-    related_searcher = re.compile("Plural form of |"
+    related_searcher = re.compile("(Plural form of |"
                                   "Of or relating to |"
                                   "Of or pertaining to the |"
-                                  "Resembling a (\w+-?).")
+                                  "Resembling a )(\w+([a-zA-Z-]+)?).")
     related_search_result = related_searcher.match(first_definition)
     if related_search_result:
-        related_form = related_search_result.group(1)
+        related_form = related_search_result.group(2)
         related_dictionary_entry = word_api.getDefinitions(
             related_form,
             sourceDictionaries="all",
@@ -43,9 +43,11 @@ def get_word_definition(word, word_api):
         print (u"Your word was {}. Fetching definition "
                "of related word {}:".format(word,
                                             related_form))
-        return (u"\nFirst Definition: {} \n"
-                "Related Definition: {}".format(first_definition,
-                                                related_definition))
+        return (u"\nDefinition of {0}: {1} \n"
+                "Definition of related word, {2}: {3}".format(word,
+                    first_definition,
+                    related_form,
+                    related_definition))
     return first_definition
 
 
