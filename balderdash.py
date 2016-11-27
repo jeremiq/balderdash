@@ -31,6 +31,7 @@ def get_word_definition(word, word_api):
                                   "Obsolete form of |"
                                   "Common misspelling of |"
                                   "A person who studies |"
+                                  "One who is subject to |"
                                   ".* participle of |"
                                   "Resembling a )(\w+([a-zA-Z-]+)?).")
     related_search_result = related_searcher.match(first_definition)
