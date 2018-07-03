@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+from __future__ import print_function
+from builtins import input
+
+
 class WordNotFoundException(Exception):
     def __init__(self, word):
         return super(
@@ -43,25 +48,25 @@ def get_word_definition(word, word_api):
             limit=1)
         if not related_dictionary_entry:
             return u"\nDefinition of '{0}': {1} \n".format(word,
-                                                         first_definition)
+                                                           first_definition)
         related_definition = related_dictionary_entry[0].text
-        print (u"Your word was {}. Fetching definition "
-               "of related word {}:".format(word,
-                                            related_form))
+        print(u"Your word was {}. Fetching definition "
+              "of related word {}:".format(word,
+                                           related_form))
         return (u"\nDefinition of '{0}': {1} \n"
                 "Definition of related word, '{2}': {3}".format(word,
-                                                              first_definition,
-                                                              related_form,
-                                                              related_definition))
+                                                                first_definition,
+                                                                related_form,
+                                                                related_definition))
     return u"\nDefinition of '{0}': {1} \n".format(word,
-                                                  first_definition)
+                                                   first_definition)
 
 
 def run():
     random_word = get_random_word(words_api, 8)
     random_word_definition = get_word_definition(random_word, word_api)
-    print u"\nYour random word is: {}".format(random_word)
-    print random_word_definition
+    print(u"\nYour random word is: {}".format(random_word))
+    print(random_word_definition)
 
 
 if __name__ == "__main__":
@@ -69,7 +74,7 @@ if __name__ == "__main__":
     import re
     import sys
     from wordnik import swagger, WordApi, WordsApi
-    print "Welcome to Balderdash!"
+    print("Welcome to Balderdash!")
 
     apiUrl = "http://api.wordnik.com/v4"
     # Don't normally check your credentials into version control!
@@ -84,10 +89,10 @@ if __name__ == "__main__":
     run()
     while True:
         prompt_message = "\nPress n to get another word or q to quit: "
-        command = raw_input(prompt_message)
+        command = input(prompt_message)
         if command == "q":
             sys.exit(0)
         elif command == "n":
             run()
         else:
-            command = raw_input(prompt_message)
+            command = input(prompt_message)
